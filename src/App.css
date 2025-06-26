@@ -1,42 +1,112 @@
-#root {
-  max-width: 1280px;
+/* General layout */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f8fc;
+  color: #333;
+}
+
+.App {
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
+}
+
+h1 {
   text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Event timer box */
+.event-timer {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-left: 5px solid #0070f3;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.event-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Timer text */
+.timer-info {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+/* Dropdown */
+.details-toggle {
+  margin-top: 0.5rem;
+  cursor: pointer;
+  color: #0070f3;
+  font-size: 0.9rem;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.details-box {
+  margin-top: 0.75rem;
+  background-color: #f0f4ff;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  position: relative;
+}
+
+/* Info icon and speech bubble */
+.info-icon {
+  display: inline-block;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  background-color: #0070f3;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+.speech-bubble {
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  top: 30px;
+  left: 0;
+  z-index: 100;
+  width: max-content;
+  max-width: 95%;
+  white-space: pre-wrap;
+  display: none;
+}
+
+.info-icon:hover + .speech-bubble,
+.speech-bubble:hover {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .App {
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .event-title {
+    font-size: 1rem;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import EventTimer from "./components/EventTimer";
+import "./App.css";
+
+// Read from environment variable
+const isPrivate = import.meta.env.VITE_MODE === "private";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const loadEvents = async () => {
+      const fileName = isPrivate ? "events.private.json" : "events.public.json";
+
+      try {
+        const module = await import(`./data/${fileName}`);
+        const data = module.default;
+
+        // Optional: sort by start date
+        data.sort((a, b) => new Date(a.start) - new Date(b.start));
+        setEvents(data);
+      } catch (error) {
+        console.error("❌ Failed to load event data:", error);
+      }
+    };
+
+    loadEvents();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="App">
+      <h1>Princess Connect Event Timers</h1>
+      {events.length === 0 ? (
+        <p>Loading events...</p>
+      ) : (
+        events.map((event) => (
+          <EventTimer
+            key={event.id}
+            title={event.title}
+            start={event.start}
+            end={event.end}
+          />
+        ))
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

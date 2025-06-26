@@ -1,0 +1,73 @@
+.event-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  background-color: #fafafa;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.countdown {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.ended {
+  color: #999;
+}
+
+.dropdown-toggle {
+  margin-top: 0.5rem;
+  padding: 4px 10px;
+  font-size: 14px;
+  background: #eee;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.time-details {
+  margin-top: 0.5rem;
+  background-color: #f8f8f8;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.started-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-icon {
+  background-color: #eee;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  padding: 0;
+}
+
+.info-icon:hover {
+  background-color: #ccc;
+}
+
+.info-popup {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background-color: white;
+  border: 1px solid #bbb;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 260px;
+}

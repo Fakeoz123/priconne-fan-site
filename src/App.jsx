@@ -2,29 +2,26 @@ import React, { useEffect, useState } from "react";
 import EventTimer from "./components/EventTimer";
 import "./App.css";
 
-// Read from environment variable
 const isPrivate = import.meta.env.VITE_MODE === "private";
 
 function App() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const loadEvents = async () => {
-      const fileName = isPrivate ? "events.private.json" : "events.public.json";
+    const fileName = isPrivate ? "events.private.json" : "events.public.json";
 
-      try {
-        const module = await import(`./data/${fileName}`);
-        const data = module.default;
-
-        // Optional: sort by start date
+    fetch(`/data/${fileName}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Fetch failed");
+        return res.json();
+      })
+      .then((data) => {
         data.sort((a, b) => new Date(a.start) - new Date(b.start));
         setEvents(data);
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("❌ Failed to load event data:", error);
-      }
-    };
-
-    loadEvents();
+      });
   }, []);
 
   return (
